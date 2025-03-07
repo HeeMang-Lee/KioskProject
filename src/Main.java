@@ -15,12 +15,7 @@ public class Main {
 
         while (true) {
             // 메뉴 출력
-            System.out.println("\n⭐ STARBUCKS MENU ⭐");
-            for (int i = 0; i < menuItems.size(); i++) {
-                System.out.print((i + 1) + ". ");
-                menuItems.get(i).printInfo();
-            }
-            System.out.println("0. 종료 | 키오스크 프로그램 종료");
+            printMenu(menuItems);
 
             // 사용자 입력 받기
             int menuNumber = getValidNumber(scanner, "메뉴 번호를 입력하세요: ");
@@ -40,21 +35,26 @@ public class Main {
             // 선택한 메뉴 가져오기
             MenuItem selectedItem = menuItems.get(menuNumber - 1);
 
-            // 사이즈 선택
-            int menuSize = getValidNumber(scanner, "음료 사이즈를 선택하세요. (1. Tall / 2. Grande / 3. Venti): ");
-            String sizeName = getSizeName(menuSize);
+            while (true) {
+                // 사이즈 선택
+                int menuSize = getValidNumber(scanner, "음료 사이즈를 선택하세요. (1. Tall / 2. Grande / 3. Venti): ");
+                String sizeName = getSizeName(menuSize);
 
-            // 유효한 사이즈 선택 시 가격 출력
-            double price = selectedItem.getPrice(menuSize);
-            if (sizeName != null && price != -1) {
-                System.out.printf("▶ 선택한 메뉴: %s (%s) | W %.1f\n", selectedItem.getName(), sizeName, price);
-            } else {
-                System.out.println("올바른 사이즈를 선택하세요.");
+                // 유효한 사이즈 선택 시 가격 출력
+                double price = selectedItem.getPrice(menuSize);
+                if (sizeName != null && price != -1) {
+                    System.out.printf("▶ 선택한 메뉴: %s (%s) | W %.1f\n", selectedItem.getName(), sizeName, price);
+                    break;
+                } else {
+                    System.out.println("올바른 사이즈를 선택하세요.");
+                    continue;
+                }
             }
         }
         scanner.close();
     }
 
+    // 사용자 입력을 받아 숫자로 반환 (잘못된 입력 예외 처리)
     private static int getValidNumber(Scanner scanner, String message) {
         int number;
         while (true) {
@@ -70,6 +70,8 @@ public class Main {
         }
         return number;
     }
+
+    // 입력된 사이즈 번호에 따라 사이즈명 반환
     private static String getSizeName(int sizeNumber) {
         return switch (sizeNumber) {
             case 1 -> "Tall";
@@ -77,6 +79,16 @@ public class Main {
             case 3 -> "Venti";
             default -> null;
         };
+    }
+
+    // 메뉴 리스트 출력
+    public static void printMenu(List<MenuItem> menuItems){
+        System.out.println("\n⭐ STARBUCKS MENU ⭐");
+        for (int i = 0; i < menuItems.size(); i++) {
+            System.out.print((i + 1) + ". ");
+            menuItems.get(i).printInfo();
+        }
+        System.out.println("0. 종료 | 키오스크 프로그램 종료");
     }
 }
 //        // 1. 스타벅스 메뉴 출력
