@@ -27,10 +27,7 @@ public class MenuItem {
             case 1 -> tallPrice;
             case 2 -> grandePrice;
             case 3 -> ventiPrice;
-            default -> {
-                System.out.println("유효하지 않은 사이즈입니다. 다시 선택해주세요.");
-                yield -1; // 오류값 반환
-            }
+            default -> -1; // 오류값 반환
         };
     }
 
