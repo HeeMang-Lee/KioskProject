@@ -15,8 +15,8 @@ public class Kiosk {
     }
 
     private void initializeMenu() {
-        menu.addItem(new Coffee("아메리카노", 4.5, "진한 에스프레소와 물의 조합", List.of("샷 추가"), "Grande", "Hot"));
-        menu.addItem(new Coffee("카페라떼", 5.0, "에스프레소와 부드러운 우유의 조화", List.of("시럽 추가"), "Tall", "Iced"));
+        menu.addItem(new Coffee("아메리카노", 4.5, "진한 에스프레소와 물의 조합", List.of("샷 추가"), "Tall", "Hot"));
+        menu.addItem(new Coffee("카페라떼", 5.0, "에스프레소와 부드러운 우유의 조화", List.of("시럽 추가"), "Tall", "Hot"));
         menu.addItem(new Tea("얼그레이", 4.8, "홍차의 깊은 향", List.of("레몬 추가"), "Hot"));
         menu.addItem(new Dessert("치즈케이크", 6.0, "부드럽고 진한 치즈 맛", List.of("초코 토핑 추가")));
     }
