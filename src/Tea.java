@@ -8,6 +8,10 @@ public class Tea extends MenuItem {
         this.type = type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public double getPrice() {
         return basePrice;

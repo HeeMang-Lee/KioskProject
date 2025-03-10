@@ -50,21 +50,18 @@ public class Kiosk {
     }
 
     private void processOrder(MenuItem item) {
-        if (item instanceof Coffee) {
-            Coffee coffee = (Coffee) item;
-            String size = getSizeName();
-            String type = getTypeName();
-            coffee = new Coffee(coffee.getName(), coffee.basePrice, coffee.description, coffee.options, size ,type);
+        if (item instanceof Coffee coffee) {
+            coffee.setSize(getSizeName());
+            coffee.setType(getTypeName());
             coffee.printInfo();
-        } else if (item instanceof Tea) {
-            Tea tea = (Tea) item;
-            String type = getTypeName();
-            tea = new Tea(tea.getName(), tea.basePrice, tea.description, tea.options, type);
+        } else if (item instanceof Tea tea) {
+            tea.setType(getTypeName());
             tea.printInfo();
         } else if (item instanceof Dessert) {
             item.printInfo();
         }
     }
+
 
     // 사용자 입력을 받아 숫자로 반환 (잘못된 입력 예외 처리)
     private int getValidNumber(Scanner scanner, String message) {

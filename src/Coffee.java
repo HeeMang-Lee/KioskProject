@@ -10,6 +10,14 @@ public class Coffee extends MenuItem{
         this.type = (type != null) ? type : "Hot"; // 기본 값을 Hot으로 설정 (NullPointException)
     }
 
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public double getPrice() {
         return switch (size) {
