@@ -103,18 +103,23 @@ public class Kiosk {
     private String getTypeName() {
         while (true) {
             System.out.print("Hot / Iced를 선택하세요 (1. Hot / 2. Iced): ");
-            int typeNumber = scanner.nextInt();
-            scanner.nextLine();
-            return switch (typeNumber) {
-                case 1 -> "Hot";
-                case 2 -> "Iced";
-                default -> {
-                    System.out.println("올바른 입력을 해주세요.");
-                    yield null;
+            if (scanner.hasNextInt()) {
+                int typeNumber = scanner.nextInt();
+                scanner.nextLine();
+                switch (typeNumber) {
+                    case 1 -> {
+                        return "Hot";
+                    }
+                    case 2 -> {
+                        return "Iced";
+                    }
+                    default -> System.out.println("올바른 입력을 해주세요.");
                 }
-            };
+            } else {
+                System.out.println("올바른 숫자를 입력하세요.");
+                scanner.nextLine();
+            }
         }
     }
-
 }
 
