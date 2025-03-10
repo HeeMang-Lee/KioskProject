@@ -4,17 +4,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // 음료 메뉴 리스트 생성
-        List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem("아메리카노", 4.5, 5.0, 5.5, "진한 에스프레소와 물을 섞어 스타벅스의 깔끔하고 강렬한 에스프레소를 가장 부드럽게 잘 느낄 수 있는 커피"));
-        menuItems.add(new MenuItem("카페라떼", 5.0, 5.5, 6.0, "풍부하고 진한 에스프레소가 신선한 스팀 밀크를 만나 부드러워진 커피 위에 우유 거품을 살짝 얹은 대표적인 커피 라떼"));
-        menuItems.add(new MenuItem("카푸치노", 5.2, 5.7, 6.2, "풍부하고 진한 에스프레소에 따뜻한 우유와 벨벳 같은 우유 거품이 1:1 비율로 어우러져 마무리된 커피 음료"));
-        menuItems.add(new MenuItem("바닐라 빈 라떼", 5.5, 6.0, 6.5, "리저브만을 위한 바닐라 빈 시럽이 부드럽게 어우러진 카페 라떼"));
 
         // 키오스크 실행
-        Kiosk kiosk = new Kiosk(menuItems);
+        Kiosk kiosk = new Kiosk();
         kiosk.start();
     }
 }

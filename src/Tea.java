@@ -15,6 +15,6 @@ public class Tea extends MenuItem {
 
     @Override
     public void printInfo() {
-        System.out.printf("%s (%s) | W %,1f | %s\n",name,type,getPrice(),description);
+        System.out.printf("%s (%s) | W %.1f | %s\n",name,type,getPrice(),description);
     }
 }
