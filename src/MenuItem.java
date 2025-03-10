@@ -15,25 +15,13 @@ public abstract class MenuItem {
         this.options = options;
     }
 
+    // 제품 가격 반환 하위 클래스에서 구현
     public abstract double getPrice();
 
-    // 음료 정보 출력
-    public void printInfo() {
-        System.out.printf("%s | W %.1f | %s\n",
-                name, getPrice(), description);
-    }
+    // 제품 정보 출력 하위 클래스에서 구현
+    public abstract void printInfo() ;
 
-//     //선택한 사이즈에 따른 가격 반환
-//    public double getPrice(int size) {
-//        return switch (size) {
-//            case 1 -> tallPrice;
-//            case 2 -> grandePrice;
-//            case 3 -> ventiPrice;
-//            default -> -1; // 오류값 반환
-//        };
-//    }
-
-    // 음료 이름 반환
+    // 제품 이름 반환
     public String getName() {
         return name;
     }
