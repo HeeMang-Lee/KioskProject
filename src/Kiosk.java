@@ -17,7 +17,7 @@ public class Kiosk {
     public void start() {
         while (true) {
             // 메뉴 출력
-            printMenu(menuItems);
+            Menu.printMenu();
 
             // 사용자 입력 받기
             int menuNumber = getValidNumber(scanner, "메뉴 번호를 입력하세요: ");
@@ -83,14 +83,5 @@ public class Kiosk {
         };
     }
 
-    // 메뉴 리스트 출력
-    public static void printMenu(List<MenuItem> menuItems){
-        System.out.println("\n⭐ STARBUCKS MENU ⭐");
-        for (int i = 0; i < menuItems.size(); i++) {
-            System.out.print((i + 1) + ". ");
-            menuItems.get(i).printInfo();
-        }
-        System.out.println("0. 종료 | 키오스크 프로그램 종료");
-    }
 }
 
