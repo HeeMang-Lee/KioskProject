@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 // MenuItem 클래스: 음료 정보를 저장하는 객체
 public abstract class MenuItem {
@@ -16,6 +17,9 @@ public abstract class MenuItem {
         this.description = description;
         this.options = (options != null) ? options : new ArrayList<>();
     }
+
+    // 옵션 선택을 하위 클래스에서 구현
+    public abstract void selectOptions(Scanner scanner);
 
     // 제품 가격 반환 하위 클래스에서 구현
     public abstract double getPrice();
