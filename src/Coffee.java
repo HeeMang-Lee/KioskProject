@@ -21,12 +21,20 @@ public class Coffee extends MenuItem {
 
     @Override
     public double getPrice() {
-        return switch (size) {
+        double totalPrice = switch (size) {
             case "Tall" -> basePrice;
             case "Grande" -> basePrice + 0.5;
             case "Venti" -> basePrice + 1.0;
             default -> basePrice;
         };
+
+        // 옵션 가격 추가 반영
+        for (String option: options) {
+            if (option.equals("샷 추가")) totalPrice += 0.5;
+            if (option.equals("휘핑크림 추가")) totalPrice += 0.5;
+            if (option.equals("바닐라 시럽 추가")) totalPrice += 0.5;
+        }
+        return totalPrice;
     }
 
     @Override
@@ -39,7 +47,7 @@ public class Coffee extends MenuItem {
 
     @Override
     public void selectOptions(Scanner scanner) {
-        System.out.println("커피 옵션을 추가하시겠습니까? (1. 예 / 2. 아니요): ");
+        System.out.print("커피 옵션을 추가하시겠습니까? (1. 예 / 2. 아니요): ");
         int optionAdd = scanner.nextInt();
         scanner.nextLine(); //잘못된 입력 제거
 
