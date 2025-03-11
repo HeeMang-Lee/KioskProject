@@ -20,10 +20,18 @@ public class Dessert extends MenuItem {
     @Override
     public void printInfo() {
         System.out.printf("%s | W %.1f | %s\n",name,getPrice(),description);
+        // 옵션 선택했을 경우 옵션 출력
+        if (!options.isEmpty()) {
+            System.out.print("| 옵션: " + options);
+        }
+        System.out.println();
     }
 
     @Override
     public void selectOptions(Scanner scanner) {
+        // 기존 옵션 리스트 초기화
+        options.clear();
+
         System.out.print("디저트 옵션을 추가하시겠습니까? (1. 예 / 2. 아니요): ");
         int optionAdd = scanner.nextInt();
         scanner.nextLine(); //잘못된 입력 제거
