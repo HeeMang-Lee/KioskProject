@@ -1,3 +1,5 @@
+package menu;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +19,7 @@ public class Menu {
     public void printMenu(){
         System.out.println("\n⭐ STARBUCKS MENU ⭐");
         for (int i = 0; i < menuItems.size(); i++) {
-            System.out.printf("%d. ", i + 1);
-            menuItems.get(i).printInfo();
+            System.out.printf("%d. %s | W %.1f | %s\n", i + 1,menuItems.get(i).getName(), menuItems.get(i).basePrice,menuItems.get(i).description);
         }
         System.out.println("0. 종료 | 키오스크 프로그램 종료");
     }

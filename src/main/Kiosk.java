@@ -1,5 +1,8 @@
+package main;
+
+import menu.*;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 // 스타벅스 키오스크 시스템을 관리하는 클래스
@@ -15,10 +18,10 @@ public class Kiosk {
     }
 
     private void initializeMenu() {
-        menu.addItem(new Coffee("아메리카노", 4.5, "진한 에스프레소와 물의 조합", List.of("샷 추가"), "Grande", "Hot"));
-        menu.addItem(new Coffee("카페라떼", 5.0, "에스프레소와 부드러운 우유의 조화", List.of("시럽 추가"), "Tall", "Iced"));
-        menu.addItem(new Tea("얼그레이", 4.8, "홍차의 깊은 향", List.of("레몬 추가"), "Hot"));
-        menu.addItem(new Dessert("치즈케이크", 6.0, "부드럽고 진한 치즈 맛", List.of("초코 토핑 추가")));
+        menu.addItem(new Coffee("아메리카노", 4.5, "진한 에스프레소와 물의 조합", new ArrayList<>(), "Tall", "Hot"));
+        menu.addItem(new Coffee("카페라떼", 5.0, "에스프레소와 부드러운 우유의 조화", new ArrayList<>(), "Tall", "Hot"));
+        menu.addItem(new Tea("얼그레이", 4.8, "홍차의 깊은 향", new ArrayList<>(), "Hot"));
+        menu.addItem(new Dessert("치즈케이크", 6.0, "부드럽고 진한 치즈 맛", new ArrayList<>()));
     }
 
     // 키오스크 시작
@@ -50,21 +53,21 @@ public class Kiosk {
     }
 
     private void processOrder(MenuItem item) {
-        if (item instanceof Coffee) {
-            Coffee coffee = (Coffee) item;
-            String size = getSizeName();
-            String type = getTypeName();
-            coffee = new Coffee(coffee.getName(), coffee.basePrice, coffee.description, coffee.options, size ,type);
+        if (item instanceof Coffee coffee) {
+            coffee.setSize(getSizeName());
+            coffee.setType(getTypeName());
+            coffee.selectOptions(scanner);
             coffee.printInfo();
-        } else if (item instanceof Tea) {
-            Tea tea = (Tea) item;
-            String type = getTypeName();
-            tea = new Tea(tea.getName(), tea.basePrice, tea.description, tea.options, type);
+        } else if (item instanceof Tea tea) {
+            tea.setType(getTypeName());
+            tea.selectOptions(scanner);
             tea.printInfo();
-        } else if (item instanceof Dessert) {
-            item.printInfo();
+        } else if (item instanceof Dessert dessert) {
+            dessert.selectOptions(scanner);
+            dessert.printInfo();
         }
     }
+
 
     // 사용자 입력을 받아 숫자로 반환 (잘못된 입력 예외 처리)
     private int getValidNumber(Scanner scanner, String message) {
