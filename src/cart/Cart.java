@@ -21,6 +21,14 @@ public class Cart {
             }
         } items.add(new CartItem(item,quantity)); // 새로운 메뉴는 장바구니에 추가
     }
+    // 장바구니에 담긴 총 가격을 계산하는 메서드
+    public double getTotalPrice() {
+        double totalPrice = 0; // 총 가격이 담길 변수 초기화
+        for (CartItem cartItem: items) {
+            totalPrice += cartItem.getMenuItem().getPrice() * cartItem.getQuantity();
+        }
+        return totalPrice;
+    }
 
     // 장바구니를 출력하는 메서드
     public void printCart() {
@@ -32,5 +40,6 @@ public class Cart {
         for (CartItem cartItem : items) {
             cartItem.printCartItem();
         }
+        System.out.printf("총 가격: W %.1f\n",getTotalPrice()); // 장바구니의 총 금액 합계 출력
     }
 }
