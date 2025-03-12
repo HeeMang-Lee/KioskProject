@@ -1,5 +1,6 @@
 package main;
 
+import cart.*;
 import menu.*;
 
 import java.util.ArrayList;
@@ -9,10 +10,12 @@ import java.util.Scanner;
 public class Kiosk {
     private Menu menu; // 메뉴 리스트
     private Scanner scanner; // 사용자 입력 처리
+    private Cart cart; // 장바구니 객체
 
     // 생성자 : 메뉴 리스트 초기화
     public Kiosk() {
         menu = new Menu();
+        cart = new Cart();
         scanner = new Scanner(System.in);
         initializeMenu(); // 기본 메뉴 추가
     }
@@ -39,6 +42,12 @@ public class Kiosk {
                 break;
             }
 
+            // 장바구니를 보는 숫자 입력 시 장바구니 출력
+            if (menuNumber == menu.getMenuSize()+1){
+                cart.printCart();
+                continue;
+            }
+
             // 메뉴 번호 유효성 검사
             if (menuNumber < 1 || menuNumber > menu.getMenuSize()) {
                 System.out.println("올바른 메뉴 번호를 입력하세요.");
@@ -47,7 +56,11 @@ public class Kiosk {
 
             // 선택한 메뉴 가져오기
             MenuItem selectedItem = menu.getItem(menuNumber - 1);
-            processOrder(selectedItem);
+
+            int quantity = getValidNumber(scanner,"수량을 입력하세요: ");
+            cart.addToCart(selectedItem,quantity);
+            System.out.println(selectedItem.getName() + " " + quantity + "개가 장바구니에 추가되었습니다.");
+//            processOrder(selectedItem);
         }
         scanner.close(); // 자원 반환
     }

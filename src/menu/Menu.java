@@ -21,6 +21,7 @@ public class Menu {
         for (int i = 0; i < menuItems.size(); i++) {
             System.out.printf("%d. %s | W %.1f | %s\n", i + 1,menuItems.get(i).getName(), menuItems.get(i).basePrice,menuItems.get(i).description);
         }
+        System.out.printf("%d. 장바구니 보기\n",menuItems.size() + 1);
         System.out.println("0. 종료 | 키오스크 프로그램 종료");
     }
 
