@@ -1,5 +1,8 @@
+package main;
+
+import menu.*;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 // 스타벅스 키오스크 시스템을 관리하는 클래스

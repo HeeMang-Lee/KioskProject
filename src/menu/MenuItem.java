@@ -1,8 +1,10 @@
+package menu;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// MenuItem 클래스: 음료 정보를 저장하는 객체
+// menu.MenuItem 클래스: 음료 정보를 저장하는 객체
 public abstract class MenuItem {
     protected String name;       // 제품 이름
     protected double basePrice; // 기본 가격
