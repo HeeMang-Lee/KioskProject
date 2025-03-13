@@ -44,13 +44,13 @@ public class Kiosk {
 
             // 장바구니를 보는 숫자 입력 시 장바구니 출력
             if (menuNumber == menu.getMenuSize()+1) {
-                clarifyOrderUI(); // 주문 여부 묻기
+                confirmOrderUI(); // 주문 여부 묻기
                 continue;
             }
 
             // 주문 취소하는 숫자 입력 시 주문 확장 메서드 호출
             if (menuNumber == menu.getMenuSize()+2) {
-                cancleOrder(); // 주문 취소 하기
+                cancelOrder(); // 주문 취소 하기
                 continue;
             }
 
@@ -62,6 +62,7 @@ public class Kiosk {
 
             // 선택한 메뉴 가져오기
             MenuItem selectedItem = menu.getItem(menuNumber - 1);
+            selectedItem = processOrder(selectedItem); // 옵션 설정 후 객체 반환
 
             while (true) {
                 int clarifyCart = getValidNumber(scanner,"위 메뉴를 장바구니에 추가하시겠습니까? (1. 확인 / 2. 취소): ");
@@ -78,25 +79,28 @@ public class Kiosk {
                     continue;
                 }
             }
-//          필수기능 때 사용된 메서드
-//          processOrder(selectedItem);
         }
         scanner.close(); // 자원 반환
     }
 
-    private void processOrder(MenuItem item) {
+    private MenuItem processOrder(MenuItem item) {
         if (item instanceof Coffee coffee) {
             coffee.setSize(getSizeName());
             coffee.setType(getTypeName());
             coffee.selectOptions(scanner);
             coffee.printInfo();
+            return coffee;
         } else if (item instanceof Tea tea) {
             tea.setType(getTypeName());
             tea.selectOptions(scanner);
             tea.printInfo();
+            return tea;
         } else if (item instanceof Dessert dessert) {
             dessert.selectOptions(scanner);
             dessert.printInfo();
+            return dessert;
+        } else {
+            return item;
         }
     }
 
@@ -156,7 +160,7 @@ public class Kiosk {
             }
         }
     }
-    private void cancleOrder() {
+    private void cancelOrder() {
         if (cart.isEmpty()) {
             System.out.println("진행 중인 주문이 없습니다.");
             return;
@@ -165,7 +169,7 @@ public class Kiosk {
         System.out.println("진행 중인 주문이 취소되었습니다.");
     }
 
-    private void clarifyOrderUI() {
+    private void confirmOrderUI() {
         if (cart.isEmpty()) {
             System.out.println("진행 중인 주문이 없습니다.");
             return;
