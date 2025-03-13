@@ -2,31 +2,41 @@ package menu;
 
 import java.util.List;
 import java.util.Scanner;
+import constants.Type;
+import constants.Size;
 
 public class Coffee extends MenuItem {
-    private String size; // Tall, Grande, Venti
-    private String type; // Hot, Iced
+    private Size size; // Tall, Grande, Venti
+    private Type type; // Hot, Iced
 
-    public Coffee(String name, double basePrice, String description, List<String> options, String size, String type) {
+    public Coffee(String name, double basePrice, String description, List<String> options, Size size, Type type) {
         super(name, basePrice, description, options);
-        this.size = (size != null) ? size : "Tall"; // 기본 값 Tall 설정
-        this.type = (type != null) ? type : "Hot"; // 기본 값을 Hot으로 설정 (NullPointException)
+        this.size = size;
+        this.type = type;
     }
 
-    public void setSize(String size) {
+    public Type getType() {
+        return type;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
         this.size = size;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
     @Override
     public double getPrice() {
         double totalPrice = switch (size) {
-            case "Tall" -> basePrice;
-            case "Grande" -> basePrice + 0.5;
-            case "Venti" -> basePrice + 1.0;
+            case TALL -> basePrice;
+            case GRANDE -> basePrice + 0.5;
+            case VENTI -> basePrice + 1.0;
             default -> basePrice;
         };
 
@@ -42,8 +52,8 @@ public class Coffee extends MenuItem {
     @Override
     public void printInfo() {
         // Iced일 경우만 "Iced-"를 붙여서 출력
-        String dpName = type.equalsIgnoreCase("Iced") ? "Iced-" + name : name;
-        System.out.printf("%s (%s) | W %.1f | %s", dpName, size, getPrice(), description);
+        String dpName = (type == Type.ICED) ? "Iced-" + name : name;
+        System.out.printf("%s (%s) | W %.1f | %s", dpName, size.getLabel(), getPrice(), description);
         // 옵션 선택했을 경우 옵션 출력
         if (!options.isEmpty()) {
             System.out.print("| 옵션: " + options);

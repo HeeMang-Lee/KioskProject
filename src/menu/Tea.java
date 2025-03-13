@@ -2,16 +2,22 @@ package menu;
 
 import java.util.List;
 import java.util.Scanner;
+import constants.Type;
+import constants.Size;
 
 public class Tea extends MenuItem {
-    private String type; // Hot, Iced
+    private Type type; // Hot, Iced
 
-    public Tea(String name, double basePrice, String description, List<String> options, String type){
+    public Tea(String name, double basePrice, String description, List<String> options, Type type){
         super(name, basePrice, description, options);
         this.type = type;
     }
 
-    public void setType(String type) {
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
         this.type = type;
     }
 
