@@ -50,7 +50,7 @@ public class Kiosk {
 
             // 장바구니를 확정하는 숫자 입력 시 주문 확장 메서드 호출
             if (menuNumber == menu.getMenuSize()+2) {
-                cart.confirmOrder();
+                cancleOrder();
                 continue;
             }
 
@@ -155,6 +155,14 @@ public class Kiosk {
                 scanner.nextLine();
             }
         }
+    }
+    public void cancleOrder() {
+        if (cart.isEmpty()) {
+            System.out.println("진행 중인 주문이 없습니다.");
+            return;
+        }
+        cart.clearCart();
+        System.out.println("진행 중인 주문이 취소되었습니다.");
     }
 }
 

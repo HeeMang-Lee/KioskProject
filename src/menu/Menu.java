@@ -20,8 +20,8 @@ public class Menu {
         System.out.println("\n⭐ STARBUCKS MENU ⭐");
         for (int i = 0; i < menuItems.size(); i++) {
             System.out.printf("%d. %s | W %.1f | %s\n", i + 1,menuItems.get(i).getName(), menuItems.get(i).basePrice,menuItems.get(i).description);
-            System.out.println("0. 종료 | 키오스크 종료");
         }
+        System.out.println("0. 종료 | 키오스크 종료");
         // 장바구니가 비어있지 않다면 [ ORDER MENU ] 출력
         if (hasCartItems) {
             System.out.println("\n[ ORDER MENU ]");
