@@ -55,8 +55,6 @@ public class Cart {
             return;
         }
 
-        System.out.println("\n === 주문 내역 ===");
-        printCart();
         System.out.printf("총 결제 금액: W %.1f\n",getTotalPrice());
         System.out.println("결제가 완료되었습니다. 감사합니다!\n");
 

@@ -44,13 +44,13 @@ public class Kiosk {
 
             // 장바구니를 보는 숫자 입력 시 장바구니 출력
             if (menuNumber == menu.getMenuSize()+1) {
-                cart.printCart();
+                clarifyOrderUI(); // 주문 여부 묻기
                 continue;
             }
 
-            // 장바구니를 확정하는 숫자 입력 시 주문 확장 메서드 호출
+            // 주문 취소하는 숫자 입력 시 주문 확장 메서드 호출
             if (menuNumber == menu.getMenuSize()+2) {
-                cancleOrder();
+                cancleOrder(); // 주문 취소 하기
                 continue;
             }
 
@@ -156,13 +156,34 @@ public class Kiosk {
             }
         }
     }
-    public void cancleOrder() {
+    private void cancleOrder() {
         if (cart.isEmpty()) {
             System.out.println("진행 중인 주문이 없습니다.");
             return;
         }
         cart.clearCart();
         System.out.println("진행 중인 주문이 취소되었습니다.");
+    }
+
+    private void clarifyOrderUI() {
+        if (cart.isEmpty()) {
+            System.out.println("진행 중인 주문이 없습니다.");
+            return;
+        }
+
+        System.out.println("\n=== [ 장바구니 확인 ] ===");
+        cart.printCart();
+        System.out.println("\n아래와 같이 주문 하시겠습니까?");
+        System.out.printf("총 결제 금액: W %.1f\n",cart.getTotalPrice());
+
+        System.out.println("\n1. 주문      2.메뉴");
+        int clarifyOrderNumber = getValidNumber(scanner,"선택: ");
+
+        if (clarifyOrderNumber == 1) {
+            cart.confirmOrder(); //주문 확정
+        } else {
+            System.out.println("메뉴판으로 돌아갑니다.");
+        }
     }
 }
 
