@@ -31,7 +31,7 @@ public class Kiosk {
     public void start() {
         while (true) {
             // 메뉴 출력
-            menu.printMenu();
+            menu.printMenu(!cart.isEmpty());
 
             // 사용자 입력 받기
             int menuNumber = getValidNumber(scanner, "메뉴 번호를 입력하세요: ");
@@ -43,8 +43,14 @@ public class Kiosk {
             }
 
             // 장바구니를 보는 숫자 입력 시 장바구니 출력
-            if (menuNumber == menu.getMenuSize()+1){
+            if (menuNumber == menu.getMenuSize()+1) {
                 cart.printCart();
+                continue;
+            }
+
+            // 장바구니를 확정하는 숫자 입력 시 주문 확장 메서드 호출
+            if (menuNumber == menu.getMenuSize()+2) {
+                cart.confirmOrder();
                 continue;
             }
 
@@ -57,10 +63,23 @@ public class Kiosk {
             // 선택한 메뉴 가져오기
             MenuItem selectedItem = menu.getItem(menuNumber - 1);
 
-            int quantity = getValidNumber(scanner,"수량을 입력하세요: ");
-            cart.addToCart(selectedItem,quantity);
-            System.out.println(selectedItem.getName() + " " + quantity + "개가 장바구니에 추가되었습니다.");
-//            processOrder(selectedItem);
+            while (true) {
+                int clarifyCart = getValidNumber(scanner,"위 메뉴를 장바구니에 추가하시겠습니까? (1. 확인 / 2. 취소): ");
+
+                if (clarifyCart == 1) {
+                    cart.addToCart(selectedItem, 1); // 수량을 한 번에 1개만 받아야 하므로 리팩토링
+                    System.out.println(selectedItem.getName() + "이(가) 장바구니에 추가되었습니다.");
+                    break;
+                } else if (clarifyCart == 2) {
+                    System.out.println("선택이 취소되었습니다.");
+                    break;
+                } else {
+                    System.out.println("올바른 번호를 입력해주세요.");
+                    continue;
+                }
+            }
+//          필수기능 때 사용된 메서드
+//          processOrder(selectedItem);
         }
         scanner.close(); // 자원 반환
     }
