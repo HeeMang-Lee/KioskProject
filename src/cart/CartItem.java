@@ -24,7 +24,18 @@ public class CartItem {
     }
 
     public void printCartItem() {
-        System.out.printf("%s | 수량: %d | 총 가격: W %.1f\n",
-                menuItem.getName(),quantity,menuItem.getPrice()* quantity);
+        if (menuItem instanceof Coffee coffee){
+            System.out.printf("%s (%s, %s) | 수량: %d | 총 가격: W %.1f", coffee.getName(),coffee.getSize().getLabel(),coffee.getType().getLabel(),quantity,menuItem.getPrice()* quantity);
+        } else if (menuItem instanceof  Tea tea) {
+            System.out.printf("%s (%s) | 수량: %d | 총 가격: W %.1f", tea.getName(),tea.getType().getLabel(),quantity,menuItem.getPrice()* quantity);
+        } else {
+            System.out.printf("%s | 수량: %d | 총 가격: W %.1f",menuItem.getName(), quantity, menuItem.getPrice() * quantity);
+        }
+
+        // 옵션 출력
+        if (!menuItem.getOptions().isEmpty()) {
+            System.out.print(" | 옵션 : " + menuItem.getOptions());
+        }
+        System.out.println();
     }
 }

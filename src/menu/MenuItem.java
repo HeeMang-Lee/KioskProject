@@ -33,4 +33,9 @@ public abstract class MenuItem {
     public String getName() {
         return name;
     }
+
+    // 옵션 반환
+    public List<String> getOptions() {
+        return options;
+    }
 }
