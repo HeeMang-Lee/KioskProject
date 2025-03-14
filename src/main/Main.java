@@ -1,6 +1,14 @@
 package main;
 
+/**
+ * 프로그램의 진입점이 되는 Main 클래스.
+ */
 public class Main {
+    /**
+     * 프로그램 실행을 위한 main 메서드.
+     *
+     * @param args 실행 시 전달되는 명령줄 인자
+     */
     public static void main(String[] args) {
 
         // 키오스크 실행

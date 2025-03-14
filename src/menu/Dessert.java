@@ -3,8 +3,19 @@ package menu;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 디저트(Dessert) 메뉴 아이템을 나타내는 클래스.
+ */
 public class Dessert extends MenuItem {
-    public Dessert(String name, double basePrice, String description, List<String> options){
+    /**
+     * Dessert 생성자.
+     *
+     * @param name        디저트 이름
+     * @param basePrice   기본 가격
+     * @param description 설명
+     * @param options     선택 가능한 옵션 리스트
+     */
+    public Dessert(String name, double basePrice, String description, List<String> options) {
         super(name, basePrice, description, options);
     }
 
@@ -12,7 +23,7 @@ public class Dessert extends MenuItem {
     public double getPrice() {
         double totalPrice = basePrice;
         // 옵션 가격 추가 반영
-        for (String option: options) {
+        for (String option : options) {
             if (option.equals("초코 토핑 추가")) totalPrice += 0.5;
             if (option.equals("휘핑크림 추가")) totalPrice += 0.5;
         }
@@ -21,7 +32,7 @@ public class Dessert extends MenuItem {
 
     @Override
     public void printInfo() {
-        System.out.printf("%s | W %.1f | %s\n",name,getPrice(),description);
+        System.out.printf("%s | W %.1f | %s\n", name, getPrice(), description);
         // 옵션 선택했을 경우 옵션 출력
         if (!options.isEmpty()) {
             System.out.print("| 옵션: " + options);
